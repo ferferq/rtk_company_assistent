@@ -1,0 +1,40 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "@typescript-eslint/no-var-requires": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "rules": {
+      "arrow-body-style": [
+        "warn",
+        "as-needed",
+        {
+          "requireReturnForObjectLiteral": true
+        },
+      ],
+      "no-duplicate-imports": [
+        "error",
+        {
+          "includeExports": true
+        },
+      ],
+      "curly": ["warn", "all"]
+    }
+  },
+  "ignorePatterns": ["dist/**", "node_modules/**", "**/*.js"],
+  "env": {
+    "node": true,
+    "es2021": true,
+    "mocha": true,
+    "browser": false
+  }
+}

@@ -1,0 +1,11 @@
+version: "3"
+services:
+  app:
+    image: rtk_company_assistant
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
