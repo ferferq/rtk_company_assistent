@@ -1,6 +1,6 @@
 import { IStepExecutor } from "../../../../interfaces";
 import { Store } from '../models'
-import { SupabaseConnection } from "../../../../dependencies/supabase-connection";
+import { SupabaseConnection } from "../../../../services/supabase-service";
 
 export class SaveEmbeddingsStep implements IStepExecutor<Store> {
   constructor(private supabaseConnection: SupabaseConnection) {

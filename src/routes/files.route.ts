@@ -3,7 +3,7 @@ import {v4 as uuIdv4} from 'uuid';
 import { Config } from '../configs';
 import express from 'express';
 import multer from 'multer';
-import { updateController } from '../controllers/files';
+import { UpdateController } from '../controllers/files';
 
 const routerFiles = express.Router();
 
@@ -22,7 +22,7 @@ const upload = multer({
   }),
 });
 
-routerFiles.post('/', upload.single('file'), updateController);
+routerFiles.post('/', upload.single('file'), UpdateController.execute);
 
 export {
   routerFiles,

@@ -6,16 +6,13 @@ import {CSVLoader} from "langchain/document_loaders/fs/csv";
 import {DirectoryLoader} from "langchain/document_loaders/fs/directory";
 import {DocumentLoader} from "langchain/document_loaders/base";
 import {UnstructuredLoader} from "langchain/document_loaders/fs/unstructured";
-import { FileConfig } from "../configs/file-config";
 import { Config } from "../configs";
 
 export class DocumentsLoaderHandler {
- private fileConfig: FileConfig;
-  constructor(config: Config) {
-    this.fileConfig = config.files;
+  constructor(private config: Config) {
   }
   async execute(fileName: string, fileType: string) {
-    const loader = this.getDocumentLoader(`${this.fileConfig.folderPathUpdate}/${fileName}`, fileType);
+    const loader = this.getDocumentLoader(`${this.config.files.folderPathUpdate}/${fileName}`, fileType);
     const document = await loader.load();
 
     return document;

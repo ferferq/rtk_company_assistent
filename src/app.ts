@@ -1,6 +1,9 @@
 import express, { Request, Response } from 'express';
 import { routes } from './routes';
 import * as dotenv from 'dotenv';
+import { Config } from './configs';
+import { DocumentsLoaderHandler } from './handlers/documents-loader.handler';
+import { SupabaseConnection } from './services';
 
 const environment = process.env.NODE_ENV || 'develop';
 const envFilePath = `.env.${environment}`;
@@ -22,6 +25,25 @@ app.use((req: Request, res: Response, next) => {
   // } else {
   //   res.status(403).send('Acesso negado.');
   // }
+});
+
+function createContext() {
+  const config = new Config();
+  const documentsLoaderHandler = new DocumentsLoaderHandler(config);
+  const supabaseConnection = new SupabaseConnection(config);
+
+  return {
+    dependencies: {
+      config,
+      documentsLoaderHandler,
+      supabaseConnection,
+    }
+  }
+};
+// Middleware para compartilhar dependências com todas as rotas
+app.use((req, res, next) => {
+  (req as any).context = createContext();
+  next();
 });
 
 app.use('/v1', routes());

@@ -5,7 +5,7 @@ import { WorkFlowExecutor } from "../../../utils/workflow-executor.util";
 import { Store } from "./models";
 import { ExtractZipStep, SplitDocumentStep, SaveEmbeddingsStep } from "./steps";
 
-export class FileUpdateWorkflow {
+export class AskWorkflow {
   private workflow = new WorkFlowExecutor<Store>();
   constructor(config: Config, documentsLoaderHandler: DocumentsLoaderHandler, supabaseConnection: SupabaseConnection) {
     this.workflow.withStep(new ExtractZipStep(config));
